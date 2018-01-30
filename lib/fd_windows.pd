@@ -1,0 +1,69 @@
+#N canvas 495 25 384 429 12;
+#X obj 156 50 t b b;
+#X obj 23 9 r fd_windows-\$1;
+#N canvas 0 22 573 284 TODO 0;
+#X text 14 40 tabosc4~ is a traditional computer music style wavetable
+lookup oscillator using 4-point polynomial interpolation. The table
+should have a power of two points plus three "guard points" \, one
+at the beginning and two at the end \, which should be wraparound copies
+of the last point and the first two points \, respectively. The "sinesum"
+and "cosinesum" methods for arrays do this automatically for you if
+you just want to specify partial strengths.;
+#X text 244 215 from tabosc4-help.pd;
+#X restore 299 11 pd TODO;
+#X obj 156 101 fd_sinc~ \$1-sin \$2 ______;
+#X obj 156 121 fd_expo~ \$1-exp \$2 ______;
+#X obj 156 141 fd_hann~ \$1-han \$2 ______;
+#X obj 156 161 fd_rexpo~ \$1-rex \$2 _____;
+#X obj 156 181 fd_gauss~ \$1-gau \$2 _____;
+#X obj 156 201 fd_trapezoid~ \$1-tra \$2 _;
+#X obj 156 221 fd_blackman~ \$1-bla \$2 __;
+#X obj 156 241 fd_triangle~ \$1-tri \$2 __;
+#X obj 156 261 fd_cauchy~ \$1-cau \$2 ____;
+#X obj 156 301 fd_poisson~ \$1-poi \$2 ___;
+#X obj 156 281 fd_logistic~ \$1-log \$2 __;
+#X obj 156 321 fd_arcsin~ \$1-arc \$2 ____;
+#N canvas 0 22 450 300 turn-dspon 0;
+#X obj 35 52 fd_dspon;
+#X obj 35 77 switch~;
+#X obj 35 23 inlet, f 11;
+#X connect 0 0 1 0;
+#X connect 2 0 0 0;
+#X restore 196 77 pd turn-dspon ______;
+#X text 215 52 fd_windows-help.pd;
+#X obj 23 33 route sin exp han rex gau tra bla tri cau log poi arc
+wel, f 15;
+#X obj 156 341 fd_welch~ \$1-wel \$2 _____;
+#X obj 156 25 fd_dsp-bang;
+#X obj 156 3 inlet;
+#X text 36 388 call [fd_seltab] from parent patch;
+#X connect 0 0 3 0;
+#X connect 0 0 4 0;
+#X connect 0 0 5 0;
+#X connect 0 0 6 0;
+#X connect 0 0 7 0;
+#X connect 0 0 8 0;
+#X connect 0 0 9 0;
+#X connect 0 0 10 0;
+#X connect 0 0 11 0;
+#X connect 0 0 12 0;
+#X connect 0 0 13 0;
+#X connect 0 0 14 0;
+#X connect 0 0 18 0;
+#X connect 0 1 15 0;
+#X connect 1 0 17 0;
+#X connect 17 0 3 0;
+#X connect 17 1 4 0;
+#X connect 17 2 5 0;
+#X connect 17 3 6 0;
+#X connect 17 4 7 0;
+#X connect 17 5 8 0;
+#X connect 17 6 9 0;
+#X connect 17 7 10 0;
+#X connect 17 8 11 0;
+#X connect 17 9 13 0;
+#X connect 17 10 12 0;
+#X connect 17 11 14 0;
+#X connect 17 12 18 0;
+#X connect 19 0 0 0;
+#X connect 20 0 19 0;

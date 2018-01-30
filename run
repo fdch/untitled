@@ -1,0 +1,28 @@
+#!/bin/bash
+OS=$(uname -s)
+if pd -version > /dev/null 2>&1
+then
+	PDLAUNCH=pd
+else
+	if [ $1 ] 
+	then
+		PDLAUNCH=$1
+	else
+		if [ "$OS" == "Darwin" ]
+		then
+			PDLAUNCH=/Applications/Pd-0.48.0.app/Contents/Resources/bin/pd
+			echo "Trying pd at $PDLAUNCH"
+		else
+			echo "Please download latest Pure Data from https://msp.ucsd.edu. If you compile from git, this script should run. If you don't, please  pass as argument 1 the directory where /bin/pd is"
+		fi
+	fi
+fi
+
+if [ "$1" == nogui ]
+then
+	$PDLAUNCH -path ../lib -open ./bin/main.pd & 
+	$PDLAUNCH -path ../lib -nogui -open ./bin/main_gem.pd
+else
+	$PDLAUNCH -path ../lib -open ./bin/main.pd & 
+	$PDLAUNCH -path ../lib -open ./bin/main_gem.pd
+fi
