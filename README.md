@@ -1,5 +1,24 @@
 # UNTITLED
 
+## To run the thing
+
+If you already have Pd (**32 bit only**, aka **__Pd-0.48-1-i386.app__**)
+
+7. From terminal, go to this repository's directory and run "run":
+
+```
+$ cd untitled
+$ ./run
+```
+
+8. Follow instructions on the "audio" patch.
+
+9. fch226 at nyu dot edu
+
+
+
+## Get Pure Data 32 bit (and Gem)
+
 On Mac:
 
 1. Go to [msp.ucsd.edu/software.html](http://msp.ucsd.edu/software.html)
@@ -18,14 +37,3 @@ Gem/0.93.3 (deken installable file for OSX PowerPC+i386/32bit))
 ```
 
 6. Add path, quit Pd.
-
-7. From terminal, go to this repository's directory and run "run":
-
-```
-$ cd untitled
-$ ./run
-```
-
-8. Follow instructions on the "audio" patch.
-
-9. fch226 at nyu dot edu
