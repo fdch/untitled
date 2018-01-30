@@ -13,9 +13,6 @@ $ ./run
 
 8. Follow instructions on the "audio" patch.
 
-9. fch226 at nyu dot edu
-
-
 
 ## Get Pure Data 32 bit (and Gem)
 
@@ -37,3 +34,33 @@ Gem/0.93.3 (deken installable file for OSX PowerPC+i386/32bit))
 ```
 
 6. Add path, quit Pd.
+
+
+## Editing the **run** command 
+
+The run command will first run pd from terminal. 
+
+If the pd installed on terminal is not 32 bit, then run "main-gem.pd" from a 32 bit Pd and you'll be good to go.
+
+Or supply an argument with the path/to/pd, as in:
+
+```
+$ ./run "path/to/pd/Contents/Resources/bin/pd"
+```
+
+If you want to avoid inputting the same path every time, simply go to line 13 and edit the PDLAUNCH variable so that the path/to/pd matches yours.
+
+```
+PDLAUNCH=/Applications/Pd-0.48-1-i386.app/Contents/Resources/bin/pd
+
+```
+
+You can avoid GUI on the video patch, once path is correctly set, by running:
+
+```
+$ ./run nogui
+```
+
+## fch226 at nyu dot edu
+
+Email me with questions or suggestions or whatever
