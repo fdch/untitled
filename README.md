@@ -2,9 +2,9 @@
 
 On Mac:
 
-1. Go to [msp.ucsd.edu/software.html]{http://msp.ucsd.edu/software.html}
+1. Go to [msp.ucsd.edu/software.html](http://msp.ucsd.edu/software.html)
 
-2. Download Pd-0.48-1-i386.app (You can also just click [here]{32-bit ("i386") Macintosh version for OSX 10.6 or later; works with older external libraries (4 Megabytes)})
+2. Download Pd-0.48-1-i386.app (You can also just click [here](http://msp.ucsd.edu/Software/pd-0.48-1-i386.mac.tar.gz))
 
 3. Move Pd-0.48-1-i386.app to Applications and open it.
 
