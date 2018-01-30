@@ -2,7 +2,7 @@
 
 ## To run the thing
 
-If you already have Pd (**32 bit only**, aka **__Pd-0.48-1-i386.app__**)
+If you already have Pd (**32 bit only**, aka **_Pd-0.48-1-i386.app_**)
 
 7. From terminal, go to this repository's directory and run "run":
 
