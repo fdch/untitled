@@ -24,7 +24,7 @@
 #X connect 8 0 9 0;
 #X connect 9 0 11 0;
 #X connect 10 0 2 0;
-#X restore 106 58 pd env;
+#X restore 31 65 pd env;
 #X obj 151 130 tgl 15 0 \$0-vu-set \$0-vu-set-set monitor 17 7 0 10
 -262144 -1 -1 0 1;
 #X msg 152 227 \; master-vol-set 0;
@@ -78,7 +78,7 @@
 #X obj 298 99 loadbang;
 #X msg 298 124 0;
 #X obj 298 149 s \$0-vu-set-set;
-#X obj 105 31 clone \$1 \$2;
+#X obj 31 38 clone \$1 \$2;
 #N canvas 0 23 491 468 rec 0;
 #X obj 114 23 catch~ rec-0;
 #X obj 124 43 catch~ rec-1;

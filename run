@@ -10,7 +10,7 @@ else
 	else
 		if [ "$OS" == "Darwin" ]
 		then
-			PDLAUNCH=/Applications/Pd-0.48.0.app/Contents/Resources/bin/pd
+			PDLAUNCH=/Applications/Pd-0.48-1-i386.app/Contents/Resources/bin/pd
 			echo "Trying pd at $PDLAUNCH"
 		else
 			echo "Please download latest Pure Data from https://msp.ucsd.edu. If you compile from git, this script should run. If you don't, please  pass as argument 1 the directory where /bin/pd is"

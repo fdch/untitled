@@ -68,9 +68,9 @@
 #X obj 372 294 matrices \$1;
 #X obj 372 376 vbap;
 #X obj 636 127 t f f f;
-#X obj 672 333 outlet;
-#X obj 101 474 clone \$2 \$1 dacout;
+#X obj 681 323 outlet;
 #X obj 254 34 text get \$3;
+#X obj 101 474 clone \$2 \$1 dacout \$4;
 #X connect 0 0 1 1;
 #X connect 1 0 26 0;
 #X connect 2 0 3 0;
@@ -78,7 +78,7 @@
 #X connect 4 0 5 0;
 #X connect 5 0 6 0;
 #X connect 6 0 12 1;
-#X connect 7 0 42 2;
+#X connect 7 0 43 2;
 #X connect 8 0 9 0;
 #X connect 9 0 12 2;
 #X connect 10 0 11 0;
@@ -101,7 +101,7 @@
 #X connect 23 0 19 0;
 #X connect 23 1 33 0;
 #X connect 25 0 12 0;
-#X connect 26 0 42 0;
+#X connect 26 0 43 0;
 #X connect 27 0 25 1;
 #X connect 27 1 5 0;
 #X connect 27 2 9 0;
@@ -120,7 +120,7 @@
 #X connect 30 7 29 1;
 #X connect 30 8 28 1;
 #X connect 31 0 23 0;
-#X connect 32 0 43 0;
+#X connect 32 0 42 0;
 #X connect 33 0 40 0;
 #X connect 34 0 37 0;
 #X connect 35 0 34 1;
@@ -128,9 +128,9 @@
 #X connect 37 0 38 0;
 #X connect 37 1 35 0;
 #X connect 38 0 39 0;
-#X connect 39 0 42 1;
+#X connect 39 0 43 1;
 #X connect 40 0 36 0;
 #X connect 40 1 7 0;
 #X connect 40 2 41 0;
-#X connect 42 0 25 0;
-#X connect 43 0 22 0;
+#X connect 42 0 22 0;
+#X connect 43 0 25 0;
