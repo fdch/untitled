@@ -25,7 +25,7 @@ On Mac:
 
 2. Download Pd-0.48-1-i386.app (You can also just click [here](http://msp.ucsd.edu/Software/pd-0.48-1-i386.mac.tar.gz))
 
-3. Move Pd-0.48-1-i386.app to Applications and open it.
+3. Move **_Pd-0.48-1-i386.app_** to Applications and open it.
 
 4. Go to Help > Find Externals and type "Gem"
 
