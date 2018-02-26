@@ -3,7 +3,8 @@
 1) CLICK "start";
 ;
 ;
-2) AFTER 6 MINUTES (video freezes);
+2) AFTER 6 MINUTES (video freezes with something like white noise)
+;
 2.a) CLICK "lplay-set-1000";
 2.b) Focus on LPLAY number box: SCROLL from 1000 to about 10 in very
 uneven steps, using SHIFT+SCROLL or not. KEEP TRACK of the overall
@@ -21,7 +22,6 @@ reacting to what is happening visually;
 ;
 4) Using SHIFT, Keep on going as close to 0 as you can (DONT GO BELOW
 0);
-;
 ;
 ;
 5) If at this point the audio starts to clog, let it clog for a while

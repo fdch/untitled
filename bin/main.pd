@@ -112,11 +112,11 @@ clear-dels clear \;;
 #X obj 131 16 cnv 15 100 30 empty empty MAIN_AUDIO_PATCH 20 12 0 14
 -262144 -1 0;
 #N canvas 150 112 1130 662 control 0;
-#X obj 118 121 tgl 15 0 dsp dsp-set dsp 17 7 0 10 -262144 -1 -1 0 1
+#X obj 118 121 tgl 15 0 dsp dsp-set dsp 17 7 0 10 -262144 -1 -1 1 1
 ;
 #X msg 524 54 \; pd dsp \$1;
 #X obj 171 213 nbx 5 24 -1e+37 1e+37 0 0 lplay lplay-set lplay 0 -8
-0 10 -262144 -1 -1 0 256;
+0 10 -262144 -1 -1 5000 256;
 #X msg 520 261 \; lplay-set 5000 \; rio 30000 \;;
 #X msg 525 377 \; lplay 0 \; rio 0 \;;
 #X msg 521 149 \; lplay-set 1000;
@@ -144,28 +144,30 @@ clear-dels clear \;;
 #X obj 396 125 vsl 35 128 0.01 6 1 0 master-vol master-vol-set master-vol
 0 -9 0 10 -262144 -1 -1 0 1;
 #X floatatom 395 263 5 0 0 0 dB master-vol -, f 5;
-#X obj 125 374 text define -k instructions;
+#X obj 139 497 text define -k instructions;
 #A set 0) Edit number of speakers in [pd guts] and Turn DSP ON \; \;
-1) CLICK "start" \; \; \; 2) AFTER 6 MINUTES (video freezes) \; 2.a)
-CLICK "lplay-set-1000" \; 2.b) Focus on LPLAY number box: SCROLL from
-1000 to about 10 in very uneven steps \, using SHIFT+SCROLL or not.
-KEEP TRACK of the overall volume. You can use the video feed as you
-scroll \, improvising and reacting to what is happening visually \;
-\; \; 3) Once you reach 10 \, go further down \, SLOWLY \, feeling
-the room \, and controlling the master volume. Here's how \; 3.a: Go
-all the way down (USING SHIFT NOW) to 3.5 \; 3.b: Jump to 2 \, using
-the keyboard (you may choose 2.3 or 2.4 \, etc) \; 3.c: Keep going
-down until you reach 1 Stay in one for a while \; \; \; 4) Using SHIFT
-\, Keep on going as close to 0 as you can (DONT GO BELOW 0) \; \; \;
-5) If at this point the audio starts to clog \, let it clog for a while
-(but not completely). Once you decide when \, CLICK "lplay-set 5000"
-\; \; \; 6) After a while CLICK "lplay 0" which will stop the piece.
-;
+1) CLICK "start" \; \; \; 2) AFTER 6 MINUTES (video freezes with something
+like white noise) \; 2.a) CLICK "lplay-set-1000" \; 2.b) Focus on LPLAY
+number box: SCROLL from 1000 to about 10 in very uneven steps \, using
+SHIFT+SCROLL or not. KEEP TRACK of the overall volume. You can use
+the video feed as you scroll \, improvising and reacting to what is
+happening visually \; \; \; 3) Once you reach 10 \, go further down
+\, SLOWLY \, feeling the room \, and controlling the master volume.
+Here's how \; 3.a: Go all the way down (USING SHIFT NOW) to 3.5 \;
+3.b: Jump to 2 \, using the keyboard (you may choose 2.3 or 2.4 \,
+etc) \; 3.c: Keep going down until you reach 1 Stay in one for a while
+\; \; \; 4) Using SHIFT \, Keep on going as close to 0 as you can (DONT
+GO BELOW 0) \; \; \; 5) If at this point the audio starts to clog \,
+let it clog for a while (but not completely). Once you decide when
+\, CLICK "lplay-set 5000" \; \; \; 6) After a while CLICK "lplay 0"
+which will stop the piece.;
 #X msg 125 348 click 1 1 1 1;
 #X obj 171 121 bng 15 250 50 0 instructions instructions-set instructions
 17 7 0 10 -262144 -1 -1;
 #X obj 125 320 r instructions;
 #X obj 524 31 r dsp;
+#X msg 172 447 write instructions.txt;
+#X text 152 413 overwrite existing instructions:;
 #X connect 8 0 12 0;
 #X connect 9 0 14 0;
 #X connect 12 0 5 0;
@@ -178,5 +180,6 @@ down until you reach 1 Stay in one for a while \; \; \; 4) Using SHIFT
 #X connect 24 0 23 0;
 #X connect 26 0 24 0;
 #X connect 27 0 1 0;
+#X connect 28 0 23 0;
 #X coords 0 -1 1 1 384 191 2 100 100;
 #X restore 28 46 pd control;
