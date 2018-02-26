@@ -179,4 +179,4 @@ down until you reach 1 Stay in one for a while \; \; \; 4) Using SHIFT
 #X connect 26 0 24 0;
 #X connect 27 0 1 0;
 #X coords 0 -1 1 1 384 191 2 100 100;
-#X restore 28 48 pd control;
+#X restore 28 46 pd control;

@@ -16,6 +16,7 @@
 #X obj 255 17 r clear-dels;
 #X obj 244 159 s~ dacsend-\$1;
 #X obj 180 49 *~ 0.98;
+#X obj 101 259 throw~ rec-\$1;
 #X connect 0 0 1 0;
 #X connect 0 0 16 0;
 #X connect 1 0 6 0;
@@ -25,6 +26,7 @@
 #X connect 6 0 7 0;
 #X connect 7 0 2 0;
 #X connect 7 0 8 0;
+#X connect 7 0 17 0;
 #X connect 9 0 10 0;
 #X connect 10 0 11 0;
 #X connect 11 0 12 0;
