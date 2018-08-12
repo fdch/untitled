@@ -54,7 +54,7 @@
 #X msg 414 496 set \$2-\$1;
 #X obj 414 471 list append \$2;
 #X obj 529 388 + 8;
-#X obj 499 350 t f f;
+#X obj 497 350 t f f;
 #X obj 150 418 *~;
 #X obj 157 316 lop~ 20;
 #X obj 39 383 *~;
@@ -62,12 +62,14 @@
 #X obj 76 421 sqrt~;
 #X obj 182 418 sqrt~;
 #X obj 503 324 mod \$3;
-#X obj 529 413 mod \$3;
+#X obj 540 418 mod \$3;
 #X obj 473 239 r pd-dsp-started;
 #X obj 457 261 t b b b;
 #X obj 560 289 f \$3;
 #X obj 560 337 int;
 #X obj 560 313 * 0.7;
+#X obj 497 374 + 1;
+#X obj 540 442 + 1;
 #X connect 0 0 46 0;
 #X connect 1 0 3 0;
 #X connect 2 0 17 0;
@@ -132,7 +134,7 @@
 #X connect 52 0 48 0;
 #X connect 53 0 52 0;
 #X connect 54 0 63 0;
-#X connect 55 0 47 0;
+#X connect 55 0 69 0;
 #X connect 55 1 54 0;
 #X connect 56 0 51 0;
 #X connect 57 0 58 1;
@@ -143,7 +145,7 @@
 #X connect 60 0 2 1;
 #X connect 61 0 56 1;
 #X connect 62 0 55 0;
-#X connect 63 0 53 0;
+#X connect 63 0 70 0;
 #X connect 64 0 65 0;
 #X connect 65 0 43 0;
 #X connect 65 1 28 0;
@@ -151,3 +153,5 @@
 #X connect 66 0 68 0;
 #X connect 67 0 54 1;
 #X connect 68 0 67 0;
+#X connect 69 0 47 0;
+#X connect 70 0 53 0;

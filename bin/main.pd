@@ -1,8 +1,7 @@
-#N canvas 525 55 450 300 12;
+#N canvas 533 52 222 131 12;
 #X declare -path ../lib;
 #N canvas 542 41 448 300 guts 0;
 #N canvas 541 41 450 300 netreceive 0;
-#X obj 32 28 netreceive 5011;
 #X obj 111 222 route w;
 #X obj 111 247 s word-send;
 #X obj 49 134 s game-send;
@@ -11,7 +10,6 @@
 #X obj 50 106 route game;
 #X obj 76 168 route lorenz;
 #X obj 76 193 s lorenz-send;
-#X obj 283 166 route stop;
 #X obj 283 191 s stop;
 #X obj 196 3 r rio;
 #X obj 196 28 list prepend send rio;
@@ -20,27 +18,38 @@
 #X obj 266 129 list prepend send stop;
 #X obj 238 78 list prepend send start;
 #X obj 266 104 r stop;
-#X connect 0 0 5 0;
-#X connect 1 0 2 0;
-#X connect 1 1 9 0;
-#X connect 5 0 4 0;
+#X obj 284 167 route stop;
+#X obj 31 5 r netreceive;
+#X obj 32 28 netreceive;
+#X obj 351 195 route rec;
+#X obj 351 219 s rec;
+#X obj 303 246 route stop-after;
+#X obj 303 270 s stop-after;
+#X connect 0 0 1 0;
+#X connect 0 1 16 0;
+#X connect 4 0 3 0;
+#X connect 4 1 5 0;
+#X connect 5 0 2 0;
 #X connect 5 1 6 0;
-#X connect 6 0 3 0;
-#X connect 6 1 7 0;
-#X connect 7 0 8 0;
-#X connect 7 1 1 0;
+#X connect 6 0 7 0;
+#X connect 6 1 0 0;
 #X connect 9 0 10 0;
-#X connect 11 0 12 0;
-#X connect 12 0 13 0;
-#X connect 13 0 0 0;
-#X connect 14 0 16 0;
+#X connect 10 0 11 0;
+#X connect 11 0 18 0;
+#X connect 12 0 14 0;
+#X connect 13 0 11 0;
+#X connect 14 0 11 0;
 #X connect 15 0 13 0;
-#X connect 16 0 13 0;
-#X connect 17 0 15 0;
-#X restore 24 132 pd netreceive;
-#X obj 24 102 fd_windows 0 512;
-#X obj 23 71 declare -path ../lib;
-#X obj 25 194 text define -k score;
+#X connect 16 0 8 0;
+#X connect 16 1 19 0;
+#X connect 17 0 18 0;
+#X connect 18 0 4 0;
+#X connect 19 0 20 0;
+#X connect 19 1 21 0;
+#X connect 21 0 22 0;
+#X restore 17 81 pd netreceive;
+#X obj 16 20 declare -path ../lib;
+#X obj 18 143 text define -k score;
 #A set 0 oscillators 9.4 10 0 13 \, 1 \; 1230 oscillators 9.4 13 10
 1 \; 45000 oscillators 2 200 10 1 \; 4500 subwoofer 1 \; 3000 subwoofer
 0 \; 4000 subwoofer 1 \; 30000 oscillators 2.3 123 8 1 \; 3000 delays
@@ -98,16 +107,77 @@ clear-dels clear \;;
 #X connect 14 1 2 0;
 #X connect 15 0 5 0;
 #X connect 15 1 10 0;
-#X restore 24 163 pd score reader;
-#X msg 23 228 \; rec 1 \, open ../rec-1.wav \, start \; start bang
+#X restore 17 112 pd score reader;
+#X obj 17 51 fd_windows 0 2051;
+#X obj 19 170 text define -k instructions;
+#A set 0) Edit number of speakers in [pd guts] and Turn DSP ON \; \;
+1) CLICK "start" \; \; \; 2) AFTER 6 MINUTES (video freezes with something
+like white noise) \; 2.a) CLICK "lplay-set-1000" \; 2.b) Focus on LPLAY
+number box: SCROLL from 1000 to about 10 in very uneven steps \, using
+SHIFT+SCROLL or not. KEEP TRACK of the overall volume. You can use
+the video feed as you scroll \, improvising and reacting to what is
+happening visually \; \; \; 3) Once you reach 10 \, go further down
+\, SLOWLY \, feeling the room \, and controlling the master volume.
+Here's how \; 3.a: Go all the way down (USING SHIFT NOW) to 3.5 \;
+3.b: Jump to 2 \, using the keyboard (you may choose 2.3 or 2.4 \,
+etc) \; 3.c: Keep going down until you reach 1 Stay in one for a while
+\; \; \; 4) Using SHIFT \, Keep on going as close to 0 as you can (DONT
+GO BELOW 0) \; \; \; 5) If at this point the audio starts to clog \,
+let it clog for a while (but not completely). Once you decide when
+\, CLICK "lplay-set 5000" \; \; \; 6) After a while CLICK "lplay 0"
+which will stop the piece.;
+#X obj 18 197 _master-guts 124 4 125;
+#X obj 18 250 clone -s 125 _subdacout 4 80;
+#X obj 18 223 clone -s 1 _dacout 124 80;
+#X obj 229 36 loadbang;
+#X msg 229 60 \; pd-controls vis 1;
+#X connect 9 0 10 0;
+#X restore 7 52 pd guts;
+#X obj 7 11 cnv 15 100 30 empty empty MAIN_AUDIO_PATCH 20 12 0 14 -262144
+-1 0;
+#N canvas 532 217 222 239 controls 1;
+#N canvas 133 39 672 653 control 0;
+#X obj 132 140 tgl 15 0 empty empty dsp 17 7 0 10 -262144 -1 -1 1 1
 ;
-#X msg 306 203 \; lplay 0 \; rio 0 \; stop bang \; rec stop \;;
-#X restore 22 54 pd guts;
-#X obj 131 16 cnv 15 100 30 empty empty MAIN_AUDIO_PATCH 20 12 0 14
--262144 -1 0;
-#X text 180 45 EDIT SPEAKER NUMBER (N-1) HERE:;
-#X text 186 97 EDIT SPEAKER NUMBER (N) HERE:;
-#N canvas 513 340 1131 668 score 0;
+#X msg 49 27 \; pd dsp \$1;
+#X obj 183 150 nbx 5 24 -1e+37 1e+37 0 0 lplay lplay-set lplay 0 -8
+0 10 -262144 -1 -1 0 256;
+#X msg 419 221 \; lplay-set 5000 \; rio 30000 \;;
+#X msg 424 337 \; lplay 0 \; rio 0 \;;
+#X msg 420 109 \; lplay-set 1000;
+#X obj 132 164 bng 15 250 50 0 start start-nogui start 17 7 0 10 -262144
+-1 -1;
+#X obj 133 185 bng 15 250 50 0 lplay-preset lplay-nogui lplay-set-1000
+17 7 0 10 -262144 -1 -1;
+#X obj 420 60 r lplay-preset;
+#X obj 419 169 r lplay-preset-2;
+#X obj 133 209 bng 15 250 50 0 lplay-preset-2 lplay-nogui-2 lplay-set-5000
+17 7 0 10 -262144 -1 -1;
+#X obj 133 230 bng 15 250 50 0 stop-preset stop-nogui lplay-0 17 7
+0 10 -262144 -1 -1;
+#X obj 420 84 fd_spigot;
+#X obj 493 85 r pd-dsp-started;
+#X obj 419 195 fd_spigot;
+#X obj 492 196 r pd-dsp-started;
+#X obj 426 307 fd_spigot;
+#X obj 499 308 r pd-dsp-started;
+#X obj 426 281 r stop-preset;
+#X obj 133 254 bng 15 250 50 0 stop stop-nogui-2 stop 17 7 0 10 -262144
+-1 -1;
+#X obj 183 253 tgl 15 0 delays delays-set delays 17 7 0 10 -262144
+-1 -1 0 1;
+#X obj 109 140 vsl 15 128 0.01 6 1 0 master-vol master-vol-set master-vol
+0 -9 0 10 -262144 -1 -1 0 1;
+#X floatatom 120 277 5 0 0 0 dB master-vol -, f 5;
+#X obj 132 23 loadbang;
+#X msg 132 47 1;
+#X obj 259 140 vsl 15 128 0.01 6 1 0 submaster-vol submaster-vol-set
+submaster-vol -50 -9 0 10 -262144 -1 -1 0 1;
+#X obj 166 104 bng 15 250 50 0 inst inst-set instructions 17 7 0 10
+-262144 -1 -1;
+#X obj 434 430 r inst;
+#X msg 434 454 \; instructions click;
+#N canvas 149 106 1131 668 old 0;
 #X text 33 231 The last section (after the video freezes for the first
 time) \, about 6 minutes into the piece \, you need to follow this
 instructions:, f 73;
@@ -123,7 +193,7 @@ you can.;
 1;
 #X msg 38 121 \; pd dsp \$1;
 #X obj 47 498 nbx 5 24 -1e+37 1e+37 0 0 lplay lplay-set lplay 0 -8
-0 10 -262144 -1 -1 5000 256;
+0 10 -262144 -1 -1 0 256;
 #X msg 763 126 \; lplay-set 5000 \; rio 30000 \;;
 #X msg 712 315 \; lplay 0 \; rio 0 \;;
 #X msg 205 309 \; lplay-set 1000;
@@ -147,43 +217,23 @@ which will stop the piece.;
 clog for a while (but not completely). Once you decide when \, just
 click on lplay-set 5000 \, which will also send rio 30000:;
 #X connect 4 0 5 0;
-#X restore 22 77 pd score OPEN;
-#X obj 238 68 _master-guts 1;
-#X obj 235 123 _vu _dacout 2;
-#X text 195 248 SAVE (CMD+S) AFTER EDITING!!;
-#N canvas 535 168 1130 662 control 0;
-#X obj 132 120 tgl 15 0 empty empty dsp 17 7 0 10 -262144 -1 -1 1 1
-;
-#X msg 254 46 \; pd dsp \$1;
-#X obj 183 130 nbx 5 24 -1e+37 1e+37 0 0 lplay lplay-set lplay 0 -8
-0 10 -262144 -1 -1 5791 256;
-#X msg 419 221 \; lplay-set 5000 \; rio 30000 \;;
-#X msg 424 337 \; lplay 0 \; rio 0 \;;
-#X msg 420 109 \; lplay-set 1000;
-#X obj 132 144 bng 15 250 50 0 start start-nogui start 17 7 0 10 -262144
--1 -1;
-#X obj 133 165 bng 15 250 50 0 lplay-preset lplay-nogui lplay-set-1000
-17 7 0 10 -262144 -1 -1;
-#X obj 420 60 r lplay-preset;
-#X obj 419 169 r lplay-preset-2;
-#X obj 133 189 bng 15 250 50 0 lplay-preset-2 lplay-nogui-2 lplay-set-5000
-17 7 0 10 -262144 -1 -1;
-#X obj 133 210 bng 15 250 50 0 stop-preset stop-nogui lplay-0 17 7
-0 10 -262144 -1 -1;
-#X obj 420 84 fd_spigot;
-#X obj 493 85 r pd-dsp-started;
-#X obj 419 195 fd_spigot;
-#X obj 492 196 r pd-dsp-started;
-#X obj 426 307 fd_spigot;
-#X obj 499 308 r pd-dsp-started;
-#X obj 426 281 r stop-preset;
-#X obj 133 234 bng 15 250 50 0 stop stop-nogui-2 stop 17 7 0 10 -262144
--1 -1;
-#X obj 161 257 tgl 15 0 delays delays-set delays_ON/OFF 17 7 0 10 -262144
--1 -1 0 1;
-#X obj 109 120 vsl 15 128 0.01 6 1 0 master-vol master-vol-set master-vol
-0 -9 0 10 -262144 -1 -1 0 1;
-#X floatatom 120 257 5 0 0 0 dB master-vol -, f 5;
+#X restore 427 493 pd old instructions;
+#X obj 283 361 r stop-after;
+#X floatatom 282 413 5 0 0 0 - - -, f 5;
+#X obj 282 466 t b f;
+#X msg 282 490 1;
+#X obj 282 514 metro 1000;
+#X obj 282 538 counter -i -1;
+#X obj 282 562 t f f;
+#X obj 282 586 sel;
+#X msg 231 532 0;
+#X obj 282 436 / 1000;
+#X obj 170 286 nbx 5 14 -1e+37 1e+37 0 0 empty empty stop-after 0 -8
+0 10 -262144 -1 -1 0 256;
+#X obj 242 286 bng 15 250 50 0 empty empty stop 17 7 0 10 -258113 -1
+-1;
+#X msg 84 490 \; lplay 0 \; rio 0 \; stop bang \;;
+#X obj 283 385 + 1000;
 #X connect 0 0 1 0;
 #X connect 8 0 12 0;
 #X connect 9 0 14 0;
@@ -194,5 +244,25 @@ click on lplay-set 5000 \, which will also send rio 30000:;
 #X connect 16 0 4 0;
 #X connect 17 0 16 1;
 #X connect 18 0 16 0;
-#X coords 0 -1 1 1 150 180 2 100 100;
-#X restore 25 103 pd control;
+#X connect 23 0 24 0;
+#X connect 24 0 0 0;
+#X connect 27 0 28 0;
+#X connect 30 0 43 0;
+#X connect 31 0 39 0;
+#X connect 32 0 33 0;
+#X connect 32 1 35 0;
+#X connect 33 0 34 0;
+#X connect 34 0 35 0;
+#X connect 35 0 36 0;
+#X connect 36 0 37 0;
+#X connect 36 1 40 0;
+#X connect 37 0 38 0;
+#X connect 37 0 41 0;
+#X connect 38 0 34 0;
+#X connect 38 0 35 0;
+#X connect 39 0 32 0;
+#X connect 41 0 42 0;
+#X connect 43 0 31 0;
+#X coords 0 -1 1 1 193 209 2 100 100;
+#X restore 14 14 pd control;
+#X restore 7 77 pd controls;

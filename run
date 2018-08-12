@@ -1,28 +1,38 @@
 #!/bin/bash
-OS=$(uname -s)
-if pd -version > /dev/null 2>&1
-then
-	PDLAUNCH=pd
-else
-	if [ $1 ] 
-	then
-		PDLAUNCH=$1
-	else
-		if [ "$OS" == "Darwin" ]
-		then
-			PDLAUNCH=/Applications/Pd-0.48-1-i386.app/Contents/Resources/bin/pd
-			echo "Trying pd at $PDLAUNCH"
-		else
-			echo "Please download latest Pure Data from https://msp.ucsd.edu. If you compile from git, this script should run. If you don't, please  pass as argument 1 the directory where /bin/pd is"
-		fi
-	fi
-fi
+pd=/Applications/Pd-0.48-1.app/Contents/Resources/bin/pd
+pd32=/Applications/Pd-0.48-1-i386.app/Contents/Resources/bin/pd
+PORTNUM=5012
+TOTDUR=480000
+#TOTDUR=30000
 
-if [ "$1" == nogui ]
-then
-	$PDLAUNCH -path ../lib -open ./bin/main.pd & 
-	$PDLAUNCH -path ../lib -nogui -open ./bin/main_gem.pd
-else
-	$PDLAUNCH -path ../lib -open ./bin/main.pd & 
-	$PDLAUNCH -path ../lib -open ./bin/main_gem.pd
-fi
+
+pd32send="\
+\
+\
+;netsend connect localhost $PORTNUM\
+;spigot-rec 1\
+;gemwin 0, destroy, dimen 600 600, frame 30, create, 1\
+;rec 1\
+;start bang\
+;stop-after $TOTDUR\
+\
+\
+\
+"
+
+
+pdsend="\
+\
+\
+;netreceive listen $PORTNUM\
+;rec-id 1\
+\
+\
+"
+#-noverbose -nogui 
+
+$pd -send $pdsend -open ./bin/main.pd & 
+
+sleep 1
+
+$pd32 -send $pd32send -open ./bin/main_gem.pd

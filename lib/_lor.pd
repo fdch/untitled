@@ -10,7 +10,7 @@
 #X obj 86 358 * 0.33333;
 #X obj 86 408 vline~;
 #X obj 86 460 throw~;
-#X obj 296 336 list split 1;
+#X obj 296 306 list split 1;
 #X obj 296 386 list;
 #X obj 62 89 != 0;
 #X obj 62 149 metro 1 1 samp;
@@ -31,10 +31,12 @@
 #X obj 433 124 + 26;
 #X msg 433 154 initb \$1;
 #X obj 296 18 t b b b;
-#X obj 296 311 list append \$1 \$2;
+#X obj 296 281 list append \$1 \$2;
 #X obj 62 48 t f f b;
-#X obj 296 361 mod \$3;
+#X obj 296 331 mod \$3;
 #X obj 367 12 r pd-dsp-started;
+#X obj 296 355 + 1;
+#X symbolatom 296 435 10 0 0 0 - - -, f 10;
 #X connect 0 0 33 0;
 #X connect 1 0 3 1;
 #X connect 1 1 22 0;
@@ -53,6 +55,7 @@
 #X connect 15 0 14 0;
 #X connect 15 1 1 0;
 #X connect 16 0 10 0;
+#X connect 16 0 37 0;
 #X connect 17 0 18 0;
 #X connect 18 0 6 0;
 #X connect 18 1 6 1;
@@ -75,5 +78,6 @@
 #X connect 33 0 13 0;
 #X connect 33 1 14 1;
 #X connect 33 2 31 0;
-#X connect 34 0 12 0;
+#X connect 34 0 36 0;
 #X connect 35 0 31 0;
+#X connect 36 0 12 0;
