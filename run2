@@ -1,0 +1,13 @@
+#!/bin/bash
+pd=/Applications/Pd-0.48-1.app/Contents/Resources/bin/pd
+pd32=/Applications/Pd-0.48-1-i386.app/Contents/Resources/bin/pd
+PORTNUM=5012
+TOTDUR=480000
+#TOTDUR=30000
+
+$pd -noverbose -nogui -send ";netreceive listen $PORTNUM;rec-id 1" -open ./bin/main.pd & 
+
+sleep 1
+
+$pd32 -noverbose -nogui  -send ";netsend connect localhost $PORTNUM;spigot-rec 1;;gemwin 0, destroy, dimen 600 600, frame 30, create, 1;rec 1;start bang;stop-after $TOTDUR" -open ./bin/main_gem.pd
+

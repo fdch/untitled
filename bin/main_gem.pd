@@ -1,4 +1,4 @@
-#N canvas 530 427 449 300 12;
+#N canvas 530 427 671 289 12;
 #X declare -lib Gem -path ../lib;
 #N canvas 292 202 669 414 netsend 0;
 #X obj 27 188 netsend;
